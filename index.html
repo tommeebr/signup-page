@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="half image"></div>
+        <div class="half down-container">
+            <form id="myForm">
+            <div class="form-container">
+                <div class="input-row">
+                    <div class="input-field">
+                        <label for="first-name">*FIRST NAME</label>
+                        <input type="text" id="first-name" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="last-name">*LAST NAME</label>
+                        <input type="text" id="last-name" required>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-field">
+                        <label for="email">*EMAIL ADDRESS</label>
+                        <input id="email" type="email" required>
+                    </div>   
+                    <div class="input-field">
+                        <label for="email">TELEPHONE NUMBER</label>
+                        <input id="tel" type="tel">
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-field">
+                        <label for="password">*PASSWORD</label>
+                        <input id="password" type="password" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="confirmPassword">*CONFIRM PASSWORD</label>
+                        <input id="confirmPassword" type="password" required>  <!-- fix password validation-->
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button id="submitButton" type="submit">Create Account</button>
+            </div>
+            <script>
+                var password = document.getElementById('password');
+                var confirmPassword = document.getElementById('confirmPassword');
+
+                function validatePasswords() {
+                    // Check if passwords match
+                    if (password.value !== confirmPassword.value) {
+                        confirmPassword.setCustomValidity('Passwords do not match.');
+                    } else {
+                        confirmPassword.setCustomValidity('');
+                    }
+                }
+
+                password.onchange = validatePasswords;
+                confirmPassword.onkeyup = validatePasswords;
+
+                document.getElementById('myForm').addEventListener('submit', function(event) {
+                    validatePasswords();
+                    if (!this.checkValidity()) {
+                        event.preventDefault();
+                    }
+                });
+            </script>
+            </form>
+            <div class="button-container">
+                <p>Already have an account? <a href="login.php">Login</a></p> <!-- change the href -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
